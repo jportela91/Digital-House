@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+  <title>Analizador</title>
+
+  <script type="text/javascript">
+var numero =  prompt("escriba un numero para saber su tipo","")
+  function setup() {
+    createCanvas(640, 480);
+    var theNumber = numero;
+
+    fill(0, 0, 0);
+    textSize(30);
+    text("Analysis of: " + theNumber, 10, 36);
+
+    text("It's positive", 10, 90);
+    text("It's negative", 10, 140);
+    text("It's zero", 10, 190);
+
+    if(theNumber > 0){
+    noFill();
+    rect(5, 60, 200, 40);
+  }else if(theNumber == 0){
+    noFill();
+    rect(5, 160, 200, 40);
+  }else if(theNumber < 0){
+    noFill();
+    rect(5, 110, 200, 40);
+  }
+
+}
+
+function draw() {
+
+}
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
