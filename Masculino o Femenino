@@ -1,0 +1,42 @@
+#Masculino o Femenio
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="sketch.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.js">
+</script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <script>
+  var m
+  var f
+  var dato = prompt("Escribi tu Genero..","")
+  var m = "masculino"
+  var f = "femenino"
+
+  function setup(){
+    createCanvas(1240,1240)
+  }
+  function draw(){
+
+      if(dato == m){
+        triangle(300,200,150,400,450,400)
+      }else{
+        
+          triangle(300,600,150,400,450,400)
+      }
+
+}
+
+
+
+
+
+  </script>
+
+  </body>
+</html>
