@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <script >
+
+
+  var nota1 = Number(prompt("ingrese su nota"));
+  var nota2 = Number(prompt("ingrese su segunda nota"));
+  var nota3 = Number(prompt("ingrese su tercer nota"));
+
+  var tresNotas = nota1 + nota2 + nota3
+
+  var promedio1 = tresNotas/3
+
+  function promedio(){
+    if (promedio1 >=4){
+      alert("regular")
+    }else{
+      alert("reprobado")
+    }
+  }
+    promedio();
+  </script>
+
+
+  </head>
+  <body>
+
+  </body>
+</html>
