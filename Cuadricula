@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="sketch.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.js">
+</script>
+    <meta charset="utf-8">
+    <title>Cuadricula</title>
+    <script >
+    function setup(){
+      createCanvas(200,200);
+    }
+    function draw(){
+
+      //Cuadrado Superior Izquierdo
+      if (mouseX > 1 && mouseY < 99 && mouseX < 99 && mouseY > 1){
+        fill("black");
+        rect(1,1,99,99);
+      }else{
+        fill("white");
+        rect(1,1,99,99);
+    }
+    // Cuadrado superior Derecho
+    if(mouseX > 99 && mouseX < 199 && mouseY > 1 && mouseY < 99){
+      fill("black");
+      rect(99,1,199,99)
+    }else {
+      fill("white");
+      rect(99,1,199,99);
+    }
+    //Cuadrado inferior Izquierdo
+    if(mouseX > 1 && mouseX < 99 && mouseY > 99 && mouseY < 199 ){
+      fill("black");
+      rect(1,99,99,199);
+    }else {
+      fill("white");
+      rect(1,99,99,199);
+    }
+    //cuadrado inferior Derecho
+    if(mouseX > 99 && mouseX < 199 && mouseY > 99 && mouseY < 199){
+      fill("black");
+      rect(99,99,199,199);
+    }else {
+      fill("white");
+      rect(99,99,199,199);
+    }
+
+  }
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
