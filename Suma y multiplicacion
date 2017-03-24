@@ -1,0 +1,35 @@
+# Ver como hacerlo funcionar
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Suma y Multiplicacion</title>
+    <script>
+
+    var num = [1,2,3,4];
+
+    function sum(){
+        var suma=0;
+      for (var i=0;i<num.length;i++){
+      suma += num[i];
+      return suma
+
+      }
+
+    }
+    function multiply(array){
+        var multiplicacion=1;
+      return num[0] * num [1] * num [2] * num [3];
+
+
+    }
+    sum();
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
