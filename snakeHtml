@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web Snake</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.2/p5.js"></script>
+		<script src="snake.js"></script>
+	</head>
+
+	<body>
+		¡Bienvenidos a la versión del snake en p5js! Abajo estan las instrucciones del juego
+		<ul>
+			<li>Presiona cualquier tecla para empezar</li>
+			<li>Usa as flechas para moverte</li>
+			<li>¡¡El objetivo es comer los cubos rojos!!</li>
+		</ul>
+		<br />
+		<div id="puntaje" style="padding-left: 35%;"></div>
+		<canvas></canvas>
+	</body>
+</html>
