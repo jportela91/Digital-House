@@ -1,0 +1,338 @@
+var juegoNuevo = true;
+
+var snakeX, snakeY;
+var tamanioSnake = 15;
+/*
+	Nuestro lenguaje será
+	Izquierda = 0
+	Derecha = 1
+	Arriba = 2
+	Abajo = 3
+*/
+var direccion = -1;
+
+var finDeJuego = false;
+
+var tamanioPaso = 7;
+
+var comidaX, comidaY;
+
+
+/*
+	Esta variable representara cada seccion de la snake
+ 	El valor de cada posicion representa la dirección hacia donde
+ 	se esta moviendo dicha sección.
+	¡Recordemos que mientras que el primer cuadrado puede estar moviendose
+	hacia un lado, su cola sigue su trazo y puede tener otra dirección!
+*/
+var seccionesSnake = [];
+
+var posX, posY;
+
+function setup() {
+	var alto = 500;
+	var ancho = 500;
+
+	createCanvas(alto, ancho);
+	background(0);
+
+	inicializarJuego();
+}
+
+function draw() {
+	/* TODO: La función draw debe preguntar si NO es el final del juego.
+	Si se cumple dicha condición debe ejecutar las funciones (en este orden):
+	- refrescarPagina
+	- dejarComida
+	- paso
+	- comer
+  */
+	if (finDeJuego === false){
+		refrescarPagina();
+		dejarComida();
+		paso();
+		comer();
+	}
+}
+
+function comer(){
+	/*
+		TODO: La función comer debe preguntar si hay colisionConComida
+
+		Si la hay debe:
+		- Ejecutar sumarSeccionASnake
+		- guardar en la variable comidaX un nuevo numeroApropiado()
+		- guardar en la variable comidaY un nuevo numeroApropiado()
+	*/
+
+	if( colisionConComida() === true){
+
+		sumarSeccionASnake();
+		comidaY = numeroApropiado();
+		comidaX = numeroApropiado();
+
+
+	}
+
+}
+
+function colisionConComida(){
+	/* Esta funcion chequea, dependiendo de la direccion
+		 en la que se este dirigiendo nuestra snake
+		 si la diferencia de distancia hacia la comida es más
+		 pequeña que el tamaño de nuestra Snake. Si esto es cierto
+		 significa que esta comiendo algo y devuelte true!
+	*/
+	var direccionAhora = seccionesSnake[0];
+	var xDiff, yDiff;
+
+	if (direccionAhora == 0 && deltaY() <= tamanioSnake){
+		xDiff = posX - comidaX;
+		if (xDiff <= tamanioSnake && xDiff > 0){
+			return true;
+		}
+	}
+	else if (direccionAhora == 1 && deltaY() <= tamanioSnake){
+		xDiff = comidaX - posX;
+		if (xDiff <= tamanioSnake && xDiff > 0){
+			return true;
+		}
+	}
+	else if (direccionAhora == 2 && deltaX() <= tamanioSnake){
+		yDiff = comidaY - posY;
+		if (yDiff <= tamanioSnake && yDiff > 0){
+			return true;
+		}
+	}
+	else if (direccionAhora == 3 && deltaX() <= tamanioSnake){
+		yDiff = posY - comidaY;
+		if (yDiff <= tamanioSnake && yDiff > 0){
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function deltaY(){
+	//Chequeo para que el número sea positivo
+	if (posY > comidaY){
+		return posY - comidaY;
+	}
+
+	return comidaY - posY;
+}
+
+function deltaX(){
+	//Chequeo para que el número sea positivo
+	if (posX > comidaX){
+		return posX - comidaX;
+	}
+
+	return comidaX - posX;
+}
+
+function sumarSeccionASnake(){
+	//Esto agrega una sección a la snake y esa sección que vaya en la misma dirección
+
+	/* TODO:
+		Esta función debe agregar a las secciones de la snake una nueva sección. Esta nueva sección debe moverse inicialmente en la misma posición que la ÚLTIMA parte de la snake.
+		tiene que ir actualizando los array por el array anterior
+
+	*/
+
+	seccionesSnake.push(seccionesSnake[seccionesSnake.length - 1]);
+
+	document.getElementById("puntaje").innerText = "Tamaño de la snake: " + seccionesSnake.length;
+}
+
+function refrescarPagina(){
+	background(0);
+}
+
+function dejarComida(){
+	fill(255, 0, 0);
+	rect(comidaX, comidaY, tamanioSnake, tamanioSnake);
+}
+
+function inicializarJuego(){
+	// Muestra el tablero y espera a que alguien aprete una tecla
+
+	seccionesSnake.push(0);
+
+	snakeX = numeroApropiado();
+	snakeY = numeroApropiado();
+
+	posX = snakeX;
+	posY = snakeY;
+
+	print("snakeX: " + snakeX);
+	print("snakeY: " + snakeY);
+
+	background(0);
+
+	fill(255, 255, 255);
+
+	rect(snakeX, snakeY, tamanioSnake, tamanioSnake);
+
+	direccion = -1;
+
+	comidaX = numeroApropiado();
+	comidaY = numeroApropiado();
+}
+
+function keyPressed() {
+	/*
+	Nuestro lenguaje será
+	Izquierda = 0
+	Derecha = 1
+	Arriba = 2
+	Abajo = 3
+	*/
+
+  /*
+		TODO:
+			Esta función debe actualizar la variable direccion.
+			Para estoy debemos chequear la variable de p5 keyCode.
+			Si el valor de keyCode es LEFT_ARROW actualizamos direccion a izquierda.
+			Si el valor de keyCode es RIGHT_ARROW actualizamos direccion a derecha.
+			Si el valor de keyCode es UP_ARROW actualizamos direccion a arriba.
+			Si el valor de keyCode es DOWN_ARROW actualizamos direccion a abajo.
+			Debemos respetar los códigos numéricos de cada dirección
+	*/
+	if(keyCode == LEFT_ARROW){
+		direccion = 0;
+	}
+	if(keyCode == RIGHT_ARROW){
+		direccion = 1;
+	}
+	if(keyCode == UP_ARROW){
+		direccion = 2;
+	}
+	if(keyCode == DOWN_ARROW){
+		direccion = 3;
+	}
+
+  return false;
+}
+
+function terminarJuego(finDeJuego){
+	if (finDeJuego == true){
+		print("");
+		print("Perdiste");
+		print("SnakeX: " + snakeX);
+		print("SnakeY: " + snakeY);
+		print("Tamaño: " + seccionesSnake.length);
+		print("");
+		document.getElementById("puntaje").innerText = "Tamaño de la snake antes de perder: " + seccionesSnake.length;
+	}
+
+	noLoop();
+}
+
+function paso(){
+		actualizarArray();
+
+		if (seccionesSnake[0] == 0 && posX > 0){
+		  	//Movimiento a la izquierda
+		  	posX -= tamanioPaso;
+
+		}
+		else if (seccionesSnake[0] == 1 && posX < width-10){
+		  	//Movimiento a la derecha
+		  	posX += tamanioPaso;
+		}
+		else if (seccionesSnake[0] == 2 && posY > 0){
+		  	//Movimiento arriba
+		  	posY -= tamanioPaso;
+		}
+		else if (seccionesSnake[0] == 3 && posY < height-10){
+		  	//Movimiento abajo
+		  	posY += tamanioPaso;
+		}
+		else{
+		  	// Terminamos el juego porque esta afuera de los bordes
+		 	if (seccionesSnake[0] >= 0){
+		  		finDeJuego = true;
+		  		terminarJuego(finDeJuego);
+		  		return;
+			}
+		}
+
+		fill(255, 255, 255);
+
+		rect(posX, posY, tamanioSnake, tamanioSnake);
+
+		var actualX = posX;
+		var actualY = posY;
+		var ultimaPos = seccionesSnake[seccionesSnake.lenght - 1]
+	/*
+	TODO: Actualizar la posición de cada sección de la serpiente.
+
+	Si la serpiente tiene más de una sección:
+		Para cada sección de la serpiente:
+			Si esa seccion se esta moviendo para izquierda se ejecuta la línea:
+				actualX += tamanioPaso;
+			Si esa seccion se esta moviendo para derecha:
+				actualX -= tamanioPaso;
+			Si esa seccion se esta moviendo para arriba:
+				actualY += tamanioPaso;
+			Si esa seccion se esta moviendo para abajo:
+				actualY -= tamanioPaso;
+
+			Para todas las secciones ejecutar:
+				fill(150, 150, 150);
+
+				rect(actualX, actualY, tamanioSnake, tamanioSnake);
+	*/
+	if (seccionesSnake.lenght > 1){
+	for( i = 0 ; seccionesSnake.lenght >= 1 ; i++){
+		if (seccionesSnake[i] == 0){
+			actualX += tamanioPaso;
+
+		}else if(seccionesSnake[i] == 1){
+			actualX -= tamanioPaso;
+
+		}else if (seccionesSnake[i] == 2){
+			actualY += tamanioPaso;
+
+		}else if (seccionesSnake[i] == 3){
+			actualY -= tamanioPaso;
+
+		}
+
+		fill(150, 150, 150);
+		rect(actualX, actualY, tamanioSnake, tamanioSnake);
+
+
+	}
+}
+
+
+}
+
+function actualizarArray(){
+	// Actualizamos la dirección de cada uno de las secciones
+
+	/* TODO:
+	Si la snake tiene más de una sección:
+		Para cada sección hay que actualizarle su valor a la dirección de la sección que esta 1 posición más adelante.
+		Ejemplo: Si yo estoy actualizando la posicion 8 debería actualizarla con la dirección de la posicion 7. La de la dirección 7 con la posición 6 y así seguiría...
+		TIP: El FOR para recorrer todas las secciones hay que hacerlo de atras para adelante ;)
+	*/
+
+	seccionesSnake[0] = direccion;
+}
+
+function numeroApropiado(){
+	var numero = int(random(10, width-20));
+
+	if (numero % 10 >= 5){
+		numero += 10 - numero % 10;
+	}
+	else{
+		numero -= numero % 10;
+	}
+
+	return numero;
+}
