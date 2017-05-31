@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <?php
+    $cantidad = 10;
+    while ($cantidad > 0) {
+      echo $cantidad;
+      $cantidad--;
+    }
+    ?>
+<br>
+  <h2>Del 1 al 100</h2>
+  <?php
+    for ($i=1; $i <= 100 ; $i++) {
+      echo $i;
+
+    }
+    ?>
+    <br>
+    <h2>Frenada Aleatoria</h2>
+    <?php
+    for ($i=0; $i < rand(0,100); $i++) {
+      echo $i;
+    }
+     ?>
+     <h2>Tabla del 2</h2>
+     <?php
+     for ($i=1; $i <= 10 ; $i++) {
+       echo (2 * $i);
+     }
+      ?>
+      <h2>Cara o Cruz</h2>
+        <?php
+        $cantidades = 0;
+        $cantidadesCara = 0;
+        $moneda;
+        while ($cantidadesCara < 5) {
+          $moneda = rand(0,1);
+          if ($moneda == 1) {
+            echo "Cara ";
+            $cantidadesCara++;
+          }else {
+            echo "Cruz";
+          }
+          $cantidades++;
+        }
+        echo $cantidades;
+         ?>
+         <h2>Moneda do while</h2>
+         <?php
+         $intentos = 0;
+         $moneda = 0;
+         do {
+           $moneda = rand(0,1);
+           if ($moneda == 1) {
+             echo "salio cara ";
+
+           }
+           $intentos++;
+
+
+         } while ($moneda > 1);
+
+         echo " nos llevo " . $intentos;
+          ?>
+
+          <h2>Ejercicio 6 Array</h2>
+          <?php
+          $nombres = ["javier","sebastian","tomas","facundo","pablo"];
+          $count = count($nombres);
+
+          for ( $i = 0; $i < $count;  $i++) {
+            echo " $nombres[$i] " ;
+          }
+
+           ?>
+           <h2>Igual con un while</h2>
+           <?php
+           $count = count($nombres);
+           $nombres = ["javier","sebastian","tomas","facundo","pablo"];
+           $cant = 0;
+
+           while ($count > $cant) {
+             echo " $nombres[$cant] ";
+
+             $cant++;
+           }
+            ?>
+            <h2>Ejercicio 7</h2>
+            <?php
+
+            $diezAleatorios = [rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10) , rand(0,10), rand(0,10)];
+            $cantAleatorios = count($diezAleatorios);
+
+            for ($i=0; $i < $cantAleatorios; $i++) {
+              echo "$diezAleatorios[$i] ";
+              if ($diezAleatorios[$i] == 5) {
+                echo "<br>Hay un 5";
+                break;
+              }
+            }
+             ?>
+
+             <h2>Ejercicio 9</h2>
+
+            <?php
+            $mascota = [
+              "animal" => "perro",
+              "edad"   => "10",
+              "altura" => "100cm",
+              "nombre" => "Lucky Duck"
+            ];
+            foreach ($mascota as $tipoDato => $dato) {
+              echo "$tipoDato:  $dato <br>";
+            }
+
+              ?>
+
+              <h2>Ejercicio 10</h2>
+              <?php
+                    $ceu = array( "Italia"=>"Roma", "Luxembourg"=>"Luxembourg", "Bélgica"=> "Bruselas",
+                "Dinamarca"=>"Copenhagen", "Finlandia"=>"Helsinki", "Francia" => "Paris",
+                "Slovakia"=>"Bratislava", "Eslovenia"=>"Ljubljana", "Alemania" => "Berlin", "Grecia" => "Athenas",
+                "Irlanda"=>"Dublin", "Holanda"=>"Amsterdam", "Portugal"=>"Lisbon", "España"=>"Madrid",
+                "Suecia"=>"Stockholm", "Reino Unido"=>"London", "Chipre"=>"Nicosia", "Lithuania"=>"Vilnius",
+                "Republica Checa"=>"Prague", "Estonia"=>"Tallin", "Hungría"=>"Budapest", "Latvia"=>"Riga",
+                "Malta"=>"Valletta", "Austria" => "Vienna", "Polonia"=>"Warsaw") ;
+
+                foreach ($ceu as $pais => $ciudad) {
+                  echo "La capital de $pais es $ciudad <br> ";
+                  
+                }
+
+
+               ?>
+
+  </body>
+</html>
